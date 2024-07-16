@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style1.css">
+  <title>Trip Posts</title>
+</head>
+<body>
+  <h1>Trip Posts</h1>
+
+  <!-- Display trip posts in small boxes -->
+  <div id="tripPostsContainer"></div>
+
+  <script>
+   
+function fetchTripPosts() {
+  fetch('/api/trip')
+    .then(response => response.json())
+    .then(data => {
+      const tripPostsContainer = document.getElementById('tripPostsContainer');
+      tripPostsContainer.innerHTML = '';
+
+      data.forEach(trip => {
+        const tripBox = document.createElement('div');
+        tripBox.classList.add('trip-box');
+        tripBox.innerHTML = `
+  <h2>Trip to ${trip.DESTINATION}</h2>
+  <p>User Id: ${trip.id}</p>
+  <p>Traveller Name: ${trip.TRAVELLERNAME}</p>
+  <p>Start Date: ${trip.STARTDATE}</p>
+  <p>End Date: ${trip.ENDDATE}</p>
+  <p>Duration: ${trip.DURATION}</p>
+  <p>No of seats: <span class="seats" id="seats-${trip.TRIPID}">${trip.NOOFSEATS}</span></p>
+  <button onclick="joinOrCancelTrip(${trip.TRIPID}, this)">${trip.status === 'Joined' ? 'Joined' : 'Join Trip'}</button>
+`;
+
+        tripPostsContainer.appendChild(tripBox);
+
+        
+        const userId = getUserId();
+        if (userId && trip.STATUS === 'Joined') {
+          const buttonElement = tripBox.querySelector('button');
+          buttonElement.innerText = 'Joined';
+          buttonElement.disabled = true;
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching trip posts:', error));
+}
+    // Function to join or cancel a trip
+function joinOrCancelTrip(tripId, buttonElement) {
+    const userId = getUserId();
+    console.log('Toggling trip with ID:', tripId);
+    console.log('User ID:', userId);
+
+    if (typeof tripId === 'undefined') {
+        console.error('Trip ID is undefined');
+        return;
+    }
+
+    if (isNaN(tripId) || tripId <= 0) {
+        console.error('Invalid tripId:', tripId);
+        alert('Invalid trip ID. Please try again.');
+        return;
+    }
+
+    const isJoining = buttonElement.innerText === 'Join Trip';
+
+    // Fetch trip details to check the start date
+    fetch(`/api/tripDetails/${tripId}`)
+    .then(response => response.json())
+    .then(data => {
+        const startDate = new Date(data.STARTDATE);
+        const currentDate = new Date();
+
+        // Check if the trip has already started
+        if (startDate <= currentDate) {
+            console.log('Trip has already started. Cannot join now.');
+            alert('The trip has already started. You cannot join now.');
+            return;
+        }
+
+        // Proceed with joining/canceling the trip
+        fetch(`/api/${isJoining ? 'joinTrip' : 'cancelTrip'}/${tripId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: userId }), 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(isJoining ? 'Failed to join the trip' : 'Failed to cancel the trip');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(`Successfully ${isJoining ? 'joined' : 'canceled'} the trip!`);
+
+            // Update button text and style
+            buttonElement.innerText = isJoining ? 'cancel' : 'Join Trip';
+            buttonElement.disabled = !isJoining; 
+
+           
+            const seatsElement = buttonElement.parentNode.querySelector('.seats');
+            seatsElement.innerText = isJoining ? parseInt(seatsElement.innerText) - 1 : parseInt(seatsElement.innerText) + 1;
+
+            
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error(`Error ${isJoining ? 'joining' : 'canceling'} the trip:`, error);
+            alert(`Failed to ${isJoining ? 'join' : 'cancel'} the trip. Please try again later.`);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching trip details:', error);
+        alert('Failed to fetch trip details. Please try again later.');
+    });
+}
+
+    
+
+    function getUserId() {
+      // Retrieve user ID from local storage
+      const userId = localStorage.getItem('userId');
+      return userId;
+    }
+
+    // Fetch trip posts when the page loads
+    window.onload = function() {
+      fetchTripPosts();
+    };
+  </script>
+</body>
+</html>
+

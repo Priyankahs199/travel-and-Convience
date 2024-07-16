@@ -1,0 +1,144 @@
+
+  body {
+    background-image: url('home3.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-color: #202C37;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#welcomeMessage {
+    margin-bottom: 20px;
+}
+
+
+#message {
+    width: 50%;
+    float: left;
+    margin-right: 20px;
+  }
+
+  #homeButtons {
+    display: flex;
+    flex-direction: column; /* Change to column */
+    align-items: flex-start;
+    max-width: 400px;
+    margin-top: 20px; /* Add margin-top to separate from the paragraph */
+}
+
+
+button {
+    background-color: #fff;
+    color: #000;
+    padding: 15px 30px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* CSS for create trip form */
+#createTripForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    max-width: 400px; /* Adjusted max-width */
+    width: 100%; /* Set width to 100% */
+}
+
+#createTripForm h2 {
+    color: #202C37;
+    margin-bottom: 20px;
+}
+
+#createTripForm label {
+    color: #202C37;
+    font-weight: bold;
+}
+
+#createTripForm input[type="text"],
+#createTripForm input[type="date"],
+#createTripForm input[type="number"] {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+}
+
+#createTripForm button {
+    background-color: #202C37;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#createTripForm button:hover {
+    background-color: #000;
+}
+
+/* CSS for trip posts */
+#tripPostsContainer {
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
+.trip-box {
+    background-color: #fff;
+    padding: 10px; /* Decreased padding */
+    border-radius: 5px;
+    box-shadow: #000;
+    width: calc(31.11% - 20px); /* Adjusted width for 3 boxes in a row */
+    margin-bottom: 20px;
+    margin-right: 10px; /* Added margin-right */
+    margin-left: 10px; /* Added margin-left */
+}
+
+.trip-box h2 {
+    color: #000;
+    margin-top: 0;
+}
+
+.trip-box p {
+    color: #000;
+    margin-bottom: 10px; /* Added margin bottom for paragraph */
+}
+
+.trip-box button {
+    background-color:#000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.trip-box button:hover {
+    background-color: #000;
+}

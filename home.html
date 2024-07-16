@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style1.css">
+  <title>Home Page</title>
+  <script src="https://kit.fontawesome.com/0ea504c5db.js" crossorigin="anonymous"></script>
+  <style>
+
+    header {
+  background-color: white;
+  color: black; 
+  padding: 37px; 
+  position: relative;
+  margin-top: 0; 
+}
+
+   
+.profileButton {
+  background: none;
+  border: 1px solid black; 
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px; 
+  position: absolute;
+  top: 20px;
+  right: 180px; 
+}
+
+.notificationButton {
+  background: none;
+  border: 1px solid black; 
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px; 
+  position: absolute;
+  top: 20px;
+  right: 20px; 
+}
+.logoutButton {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.logoutButton:hover {
+  background-color: #45a049; 
+}
+
+
+
+#userDetailsContainer {
+  position: absolute;
+  top: calc(100% + 20px); 
+  right: 20px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  display: none; 
+  z-index: 1000; 
+  width: 205px; 
+}
+
+
+#notificationContainer {
+  position: absolute;
+  top: calc(100% + 20px); 
+  right: 20px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  display: none; 
+  z-index: 1000; 
+  width: 205px; 
+}
+
+
+.userInfo {
+  margin-bottom: 10px;
+  list-style-type: none; 
+}
+
+
+.userInfo li {
+  margin-bottom: 5px;
+  border-bottom: 1px solid black; 
+  padding-bottom: 5px; 
+}
+
+
+.notificationButton:hover + #notificationContainer {
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <button class="profileButton" id="profileButton">
+      <i class="fas fa-user"></i> Profile
+    </button>
+    <button class="notificationButton" id="notificationButton">
+      <i class="fas fa-bell"></i> Notifications
+    </button>
+    <button class="logoutButton" id="logoutButton">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    
+    
+   
+    <div id="userDetailsContainer">
+    
+    </div>
+    <div id="notificationContainer">
+   
+    </div>
+  </header>
+  
+  </header>
+
+  <div id="welcomeMessage">
+    <h1> Hi, Welcome </h1><br>
+  </div>
+  <div id="message">
+    <p>This is the digital platform that facilitates seamless coordination between individuals seeking shared 
+      transportation facilities. From the shared rides to meticulously planned journeys, the platform empowers
+      individuals to optimize resources, bolster accessibility, and cultivate meaningful connections within the realm 
+      of travel. Join us on this transformative voyage as it reshapes travel experiences, propelling the landscape 
+      into an era defined by collaborative connectivity and unparalleled convenience.
+    </p>
+    <br><br>
+   
+    <div id="homeButtons">
+     
+      <button onclick="showCreateTripForm()">Create Trip Post</button>
+      <br>
+    
+      <a href="/trip-posts.html"><button>View Trip Posts</button></a>
+    </div>
+  
+
+
+   
+
+  
+  <div id="createTripForm" style="display:none;">
+    <h2>Create Trip</h2>
+    <form id="tripForm">
+      <label for="createTripDestination">Destination:</label>
+      <input type="text" id="createTripDestination" name="createTripDestination" required>
+      
+      <label for="createTripId">User Id:</label>
+      <input type="number" id="createTripuserId" name="Id" required>
+
+      <label for="createTripTravellerName">Traveller Name:</label>
+      <input type="text" id="createTripTravellerName" name="createTripTravellerName" required>
+
+      
+      <label for="createTripStartDate">Start Date:</label>
+      <input type="date" id="createTripStartDate" name="createTripStartDate" required>
+      
+      <label for="createTripEndDate">End Date:</label>
+      <input type="date" id="createTripEndDate" name="createTripEndDate" required>
+      
+      <label for="createTripDuration">Duration:</label>
+      <input type="text" id="createTripDuration" name="createTripDuration" required>
+      
+      <label for="createTripNoOfSeats">Number of Seats:</label>
+      <input type="number" id="createTripNoOfSeats" name="createTripNoOfSeats" required>
+
+      <button type="button" onclick="createTrip()">Create Trip</button>
+    </form>
+  </div>
+</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

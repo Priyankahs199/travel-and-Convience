@@ -1,0 +1,73 @@
+p {
+  color: #202C37;
+}
+
+.form-group label {
+  color: #202C37;
+  font-weight: bold;
+}
+
+p a:last-child {
+  color: #202C37;
+  text-decoration: underline;
+}
+
+body {
+  
+  background-image: url('login1.jpeg');
+ 
+  background-position: center;
+  background-size: cover;
+  
+  background-color: #202C37; 
+  color: #fff; 
+  font-family: sans-serif;
+  margin: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+}
+
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 350px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #202C37;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input,
+textarea {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 85%;
+}
+
+button {
+  background-color: #202C37;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
+
+
